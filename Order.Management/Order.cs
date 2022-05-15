@@ -9,12 +9,16 @@ namespace Order.Management
         public string CustomerName { get; set; }
         public string Address { get; set; }
         public string DueDate { get; set; }
+
+        // AM: No value ever assigned to this property
         public int OrderNumber { get; set; }
         public List<Shape> OrderedBlocks { get; set; }
 
         public abstract void GenerateReport();
 
-        public string ToString()
+        // AM: Override ToString()
+        // Use string interpolation instead of concatenation.
+        public override string ToString()
         {
             return "\nName: " + CustomerName + " Address: " + Address + " Due Date: " + DueDate + " Order #: " + OrderNumber;
         }

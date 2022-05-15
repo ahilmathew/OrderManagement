@@ -6,13 +6,14 @@ namespace Order.Management
 {
     class Square : Shape
     {
-
+        // Unnecessary Variable
         public int SquarePrice = 1;
 
         public Square(int numberOfRedSquares, int numberOfBlueSquares, int numberOfYellowSquares)
         {
             Name = "Square";
-            base.Price = SquarePrice;
+            //base.Price = SquarePrice;
+            base.Price = 1;
             AdditionalCharge = 1;
             base.NumberOfRedShape = numberOfRedSquares;
             base.NumberOfBlueShape = numberOfBlueSquares;
@@ -21,20 +22,28 @@ namespace Order.Management
 
         public override int Total()
         {
-            return RedSquaresTotal() + BlueSquaresTotal() + YellowSquaresTotal();
+            return ShapeTotal(base.NumberOfRedShape) + ShapeTotal(base.NumberOfBlueShape)
+                    + ShapeTotal(base.NumberOfYellowShape);
         }
-
-        public int RedSquaresTotal()
+        // AM:
+        // All the below methods should have been private since these are only used in this class.
+        // All methods do the same operation. Can be done in a single method with parameter.
+        // Same for other shapes.
+        private int ShapeTotal(int quantity)
         {
-            return (base.NumberOfRedShape * Price);
+            return (quantity * base.Price);
         }
-        public int BlueSquaresTotal()
-        {
-            return (base.NumberOfBlueShape * Price);
-        }
-        public int YellowSquaresTotal()
-        {
-            return (base.NumberOfYellowShape * Price);
-        }
+        //public int RedSquaresTotal()
+        //{
+        //    return (base.NumberOfRedShape * Price);
+        //}
+        //public int BlueSquaresTotal()
+        //{
+        //    return (base.NumberOfBlueShape * Price);
+        //}
+        //public int YellowSquaresTotal()
+        //{
+        //    return (base.NumberOfYellowShape * Price);
+        //}
     }
 }
