@@ -15,6 +15,7 @@ namespace Order.Management
         public abstract void GenerateReport();
 
         // AM: Override ToString()
+        // Use string interpolation instead of concatenation.
         public override string ToString()
         {
             return "\nName: " + CustomerName + " Address: " + Address + " Due Date: " + DueDate + " Order #: " + OrderNumber;

@@ -25,7 +25,7 @@ namespace Order.Management
             OrderCircleDetails();
             RedPaintSurcharge();
         }
-
+        // AM: Use string interpolation instead of concatenation.
         public void RedPaintSurcharge()
         {
             Console.WriteLine("Red Color Surcharge       " + TotalAmountOfRedShapes() + " @ $" + base.OrderedBlocks[0].AdditionalCharge + " ppi = $" + TotalPriceRedPaintSurcharge());
