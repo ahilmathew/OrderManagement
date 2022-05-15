@@ -7,6 +7,7 @@
 - Code Repetition
      * Getting input for each shape
      * Calculating totals
+- Can use factory pattern for generating reports. Also reports don't feel like something that should be inherited from Order class.
 - Override ToString method in Order class.
 - Unwanted methods.
 - Can move some constant values to a 'Constants' class. - tableWidth , TrianglePrice, CirclePrice, SquarePrice

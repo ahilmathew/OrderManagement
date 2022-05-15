@@ -9,6 +9,8 @@ namespace Order.Management
         public string CustomerName { get; set; }
         public string Address { get; set; }
         public string DueDate { get; set; }
+
+        // AM: No value ever assigned to this property
         public int OrderNumber { get; set; }
         public List<Shape> OrderedBlocks { get; set; }
 

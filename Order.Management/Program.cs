@@ -12,11 +12,13 @@ namespace Order.Management
 
             var orderedShapes = CustomerOrderInput();
 
-            InvoiceReport(customerName, address, dueDate, orderedShapes);
+            // Use factory pattern for generating reports.
+            GetReports(customerName, address, dueDate, orderedShapes);
+            // InvoiceReport(customerName, address, dueDate, orderedShapes);
 
-            CuttingListReport(customerName, address, dueDate, orderedShapes);
+            // CuttingListReport(customerName, address, dueDate, orderedShapes);
 
-            PaintingReport(customerName, address, dueDate, orderedShapes);
+            // PaintingReport(customerName, address, dueDate, orderedShapes);
         }
         private static (int red, int blue, int yellow) ShapeInput(string shape)
         {
@@ -89,26 +91,37 @@ namespace Order.Management
             return input;
         }
 
-        // Generate Painting Report 
-        private static void PaintingReport(string customerName, string address, string dueDate, List<Shape> orderedShapes)
+        // Generate Report
+        private static void GetReports(string customerName, string address, string dueDate, List<Shape> orderedShapes)
         {
-            PaintingReport paintingReport = new PaintingReport(customerName, address, dueDate, orderedShapes);
-            paintingReport.GenerateReport();
+            Order InvoiceReport = ReportFactory.GetReport("Invoice", customerName, address, dueDate, orderedShapes);
+            InvoiceReport.GenerateReport();
+            Order CuttingListReport = ReportFactory.GetReport("CuttingList", customerName, address, dueDate, orderedShapes);
+            CuttingListReport.GenerateReport();
+            Order PaintingReport = ReportFactory.GetReport("Painting", customerName, address, dueDate, orderedShapes);
+            PaintingReport.GenerateReport();
         }
 
         // Generate Painting Report 
-        private static void CuttingListReport(string customerName, string address, string dueDate, List<Shape> orderedShapes)
-        {
-            CuttingListReport cuttingListReport = new CuttingListReport(customerName, address, dueDate, orderedShapes);
-            cuttingListReport.GenerateReport();
-        }
+        // private static void PaintingReport(string customerName, string address, string dueDate, List<Shape> orderedShapes)
+        // {
+        //     PaintingReport paintingReport = new PaintingReport(customerName, address, dueDate, orderedShapes);
+        //     paintingReport.GenerateReport();
+        // }
 
-        // Generate Invoice Report 
-        private static void InvoiceReport(string customerName, string address, string dueDate, List<Shape> orderedShapes)
-        {
-            InvoiceReport invoiceReport = new InvoiceReport(customerName, address, dueDate, orderedShapes);
-            invoiceReport.GenerateReport();
-        }
+        // // Generate Painting Report 
+        // private static void CuttingListReport(string customerName, string address, string dueDate, List<Shape> orderedShapes)
+        // {
+        //     CuttingListReport cuttingListReport = new CuttingListReport(customerName, address, dueDate, orderedShapes);
+        //     cuttingListReport.GenerateReport();
+        // }
+
+        // // Generate Invoice Report 
+        // private static void InvoiceReport(string customerName, string address, string dueDate, List<Shape> orderedShapes)
+        // {
+        //     InvoiceReport invoiceReport = new InvoiceReport(customerName, address, dueDate, orderedShapes);
+        //     invoiceReport.GenerateReport();
+        // }
 
         // Get customer Info
         private static (string customerName, string address, string dueDate) CustomerInfoInput()
